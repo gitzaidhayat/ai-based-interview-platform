@@ -1,0 +1,159 @@
+/* ─── Auth Container ─── */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #080c14;
+  padding: 28px 20px;
+  position: relative;
+}
+
+/* ─── Background Glow Effect ─── */
+.auth-container::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Auth Card ─── */
+.auth-card {
+  background: #0d1420;
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 36px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(20px);
+}
+
+.auth-card h1 {
+  margin: 0 0 10px 0;
+  color: #e8edf5;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Syne', sans-serif;
+}
+
+.subtitle {
+  color: #5c6b82;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+/* ─── Form Groups ─── */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #e8edf5;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s;
+  background: rgba(255,255,255,0.03);
+  color: #e8edf5;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+  background: rgba(255,255,255,0.05);
+}
+
+/* ─── Button ─── */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+  box-shadow: 0 0 20px rgba(59,130,246,0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(59,130,246,0.45);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── Error Message ─── */
+.error-message {
+  background: rgba(239,68,68,0.1);
+  color: #ef4444;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(239,68,68,0.2);
+  font-size: 14px;
+}
+
+/* ─── Auth Link ─── */
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #5c6b82;
+  font-size: 14px;
+}
+
+.auth-link a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Responsive Design ─── */
+@media (max-width:480px){
+  .auth-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  .auth-card h1 {
+    font-size: 20px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
+  .btn-primary {
+    padding: 12px;
+    font-size: 15px;
+  }
+}

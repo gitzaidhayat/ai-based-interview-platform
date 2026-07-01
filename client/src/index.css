@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* eslint-disable-next-line at-rule-no-unknown */
+@tailwind base;
+/* eslint-disable-next-line at-rule-no-unknown */
+@tailwind components;
+/* eslint-disable-next-line at-rule-no-unknown */
+@tailwind utilities;
+
+/* Global base styles - minimal and scoped */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #080c14;
+  color: #e8edf5;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Remove all conflicting global styles that interfere with component design systems */
+
+:root{
+  --bg-1: #0f172a;
+  --bg-2: #0b1020;
+  --muted: #9ca3af;
+  --accent: #7c3aed;
+  --glass: rgba(255,255,255,0.04);
+}
+
+/* Responsive type */
+html{font-size:16px}
+@media (max-width:640px){html{font-size:15px}}
+@media (max-width:420px){html{font-size:14px}}
+
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+/* Make images and media responsive */
+img, video {
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* Reduce heavy effects on very small screens */
+@media (max-width:420px){
+  .blur-3xl, .backdrop-blur-xl{backdrop-filter:none}
+  .animate-pulse{animation:none}
+}
+
+.App {
+  min-height: 100vh;
+}
