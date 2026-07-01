@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import { buildRecruiterShareLink } from '../../utils/recruiterInterviewLinks.js';
+import { SERVER_URL } from '../../utils/apiConfig.js';
 
 const RecruiterCreateInterview = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const RecruiterCreateInterview = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `${process.env.SERVER_URL}/api/recruiter/create-interview`,
+        `${SERVER_URL}/api/recruiter/create-interview`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

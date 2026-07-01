@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import Stats from './Stats.jsx';
+import { SERVER_URL } from '../../utils/apiConfig.js';
 
 
 const Dashboard = () => {
@@ -27,11 +28,11 @@ const Dashboard = () => {
   const loadDashboardData = async () => {
     try {
       // Load user's interview history
-      const interviewsRes = await axios.get(`${process.env.SERVER_URL}/api/interview/user/history`);
+      const interviewsRes = await axios.get(`${SERVER_URL}/api/interview/user/history`);
       setInterviews(interviewsRes.data);
 
       // Load available roles for interview setup
-      const rolesRes = await axios.get(`${process.env.SERVER_URL}/api/questions/roles`);
+      const rolesRes = await axios.get(`${SERVER_URL}/api/questions/roles`);
       
       
       // If no roles found, use defaults
@@ -57,7 +58,7 @@ const Dashboard = () => {
     }
 
     try {
-      const res = await axios.post(`${process.env.SERVER_URL}/api/interview/start`, interviewConfig);
+      const res = await axios.post(`${SERVER_URL}/api/interview/start`, interviewConfig);
       navigate(`/interview/${res.data._id}`);
     } catch (err) {
       console.error('Failed to start interview:', err);

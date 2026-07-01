@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { SERVER_URL } from '../../utils/apiConfig.js';
 
 const ResultsTable = ({ interviewId }) => {
   const [results, setResults] = useState([]);
@@ -17,7 +18,7 @@ const ResultsTable = ({ interviewId }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:5000/api/recruiter/results/${interviewId}`,
+        `${SERVER_URL}/api/recruiter/results/${interviewId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setResults(response.data.results);

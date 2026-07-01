@@ -5,6 +5,7 @@ import { AuthContext } from '../../context/AuthContext.jsx';
 import SpeechRecognition from './SpeechRecognition.jsx';
 import QuestionCard from './QuestionCard.jsx';
 import VideoRecorder from './VideoRecorder.jsx';
+import { SERVER_URL } from '../../utils/apiConfig.js';
 
 // Get auth token
 const getAuthHeaders = () => {
@@ -85,12 +86,12 @@ const CandidateInterview = () => {
       
       const requestOrder = !isLoggedIn || user?.role === 'recruiter'
         ? [
-            () => axios.get(`${process.env.SERVER_URL}/api/recruiter/interview/${id}`, getAuthHeaders()),
-            () => axios.get(`${process.env.SERVER_URL}/api/interview/${id}`, getAuthHeaders()),
+            () => axios.get(`${SERVER_URL}/api/recruiter/interview/${id}`, getAuthHeaders()),
+            () => axios.get(`${SERVER_URL}/api/interview/${id}`, getAuthHeaders()),
           ]
         : [
-            () => axios.get(`${process.env.SERVER_URL}/api/interview/${id}`, getAuthHeaders()),
-            () => axios.get(`${process.env.SERVER_URL}/api/recruiter/interview/${id}`, getAuthHeaders()),
+            () => axios.get(`${SERVER_URL}/api/interview/${id}`, getAuthHeaders()),
+            () => axios.get(`${SERVER_URL}/api/recruiter/interview/${id}`, getAuthHeaders()),
           ];
 
       let response = null;
@@ -155,7 +156,7 @@ const CandidateInterview = () => {
       if (isLoggedIn && id) {
         try {
           const submitRes = await axios.post(
-            `${process.env.SERVER_URL}/api/interview/${id}/response`,
+            `${SERVER_URL}/api/interview/${id}/response`,
             {
               transcript,
               thinkingTime,
@@ -400,12 +401,12 @@ const CandidateInterview = () => {
 
       const submissionOrder = !isLoggedIn || user?.role === 'recruiter'
         ? [
-            () => axios.post(`${process.env.SERVER_URL}/api/recruiter/submit-result`, resultData, getAuthHeaders()),
-            () => axios.post(`${process.env.SERVER_URL}/api/interview/${id}/submit`, resultData, getAuthHeaders()),
+            () => axios.post(`${SERVER_URL}/api/recruiter/submit-result`, resultData, getAuthHeaders()),
+            () => axios.post(`${SERVER_URL}/api/interview/${id}/submit`, resultData, getAuthHeaders()),
           ]
         : [
-            () => axios.post(`${process.env.SERVER_URL}/api/interview/${id}/submit`, resultData, getAuthHeaders()),
-            () => axios.post(`${process.env.SERVER_URL}/api/recruiter/submit-result`, resultData, getAuthHeaders()),
+            () => axios.post(`${SERVER_URL}/api/interview/${id}/submit`, resultData, getAuthHeaders()),
+            () => axios.post(`${SERVER_URL}/api/recruiter/submit-result`, resultData, getAuthHeaders()),
           ];
 
       let submitted = false;

@@ -5,6 +5,8 @@ import { AuthContext } from '../../context/AuthContext.jsx';
 import SpeechRecognition from './SpeechRecognition.jsx';
 import QuestionCard from './QuestionCard.jsx';
 import VideoRecorder from './VideoRecorder.jsx';
+import { SERVER_URL } from '../../utils/apiConfig.js';
+import { SERVER_URL } from '../../utils/apiConfig.js';
 
 // Get auth token
 const getAuthHeaders = () => {
@@ -81,14 +83,14 @@ const CandidateInterview = () => {
       // Try student interview API first (for practice interviews)
       let response;
       try {
-        response = await axios.get(`${process.env.SERVER_URL}/api/interview/${id}`,
+        response = await axios.get(`${SERVER_URL}/api/interview/${id}`,
           getAuthHeaders()
         );
       } catch (studentError) {
         // If student interview not found, try recruiter interview API
         try {
           response = await axios.get(
-            `${process.env.SERVER_URL}/api/recruiter/interview/${id}`,
+            `${SERVER_URL}/api/recruiter/interview/${id}`,
             getAuthHeaders()
           );
         } catch (recruiterError) {
@@ -241,13 +243,13 @@ const CandidateInterview = () => {
       // Try student interview submission first, then recruiter submission
       try {
         await axios.post(
-          `http://localhost:5000/api/interview/${id}/submit`,
+          `${SERVER_URL}/api/interview/${id}/submit`,
           resultData,
           getAuthHeaders()
         );
       } catch (studentSubmitError) {
         await axios.post(
-          'http://localhost:5000/api/recruiter/submit-result',
+          `${SERVER_URL}/api/recruiter/submit-result`,
           resultData,
           getAuthHeaders()
         );

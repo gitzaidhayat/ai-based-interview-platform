@@ -19,6 +19,7 @@ import RecruiterLayout from './RecruiterLayout.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import { buildRecruiterShareLink } from '../../utils/recruiterInterviewLinks.js';
 import { fetchRecruiterInterviewResults } from '../../utils/recruiterApi.js';
+import { SERVER_URL } from '../../utils/apiConfig.js';
 
 const StatCard = ({ label, value, sub, badgeText, badgeClassName, iconClassName, Icon }) => (
   <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#081227]/80 p-5">
@@ -106,7 +107,7 @@ const RecruiterDashboard = () => {
     if (!window.confirm('Delete this interview and all candidate results?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${process.env.SERVER_URL}/api/recruiter/delete-interview/${id}`, {
+      await axios.delete(`${SERVER_URL}/api/recruiter/delete-interview/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchInterviews();

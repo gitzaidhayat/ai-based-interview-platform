@@ -2,6 +2,8 @@ const RecruiterInterview = require('../models/RecruiterInterview');
 const CandidateResult = require('../models/CandidateResult');
 const { nanoid } = require('nanoid');
 
+const clientUrl = process.env.CLIENT_URL || process.env.Client_URL || 'https://ai-based-interview-platform-two.vercel.app';
+
 // @route   POST /api/recruiter/create-interview
 // @desc    Create a new recruiter interview
 exports.createInterview = async (req, res) => {
@@ -10,7 +12,7 @@ exports.createInterview = async (req, res) => {
     
     // Generate unique interview ID
     const interviewId = nanoid(8);
-    const shareableLink = `http://localhost:5174/interview/${interviewId}`;
+    const shareableLink = `${clientUrl}/interview/${interviewId}`;
     
     const interview = new RecruiterInterview({
       interviewId,

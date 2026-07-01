@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Results.css';
+import { SERVER_URL } from '../../utils/apiConfig.js';
 
 const Results = () => {
   const { id } = useParams();
@@ -21,11 +22,11 @@ const Results = () => {
       setLoading(true);
       
       // Fetch interview details
-      const interviewRes = await axios.get(`${process.env.SERVER_URL}/api/interview/${id}`);
+      const interviewRes = await axios.get(`${SERVER_URL}/api/interview/${id}`);
       setInterview(interviewRes.data);
 
       // Fetch responses
-      const responsesRes = await axios.get(`${process.env.SERVER_URL}/api/interview/${id}/responses`);
+      const responsesRes = await axios.get(`${SERVER_URL}/api/interview/${id}/responses`);
       setResponses(responsesRes.data);
 
       setLoading(false);

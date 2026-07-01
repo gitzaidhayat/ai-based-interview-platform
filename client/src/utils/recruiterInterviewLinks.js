@@ -1,8 +1,10 @@
+import { SERVER_URL } from './apiConfig.js';
+
 const getInterviewIdFromLink = (link) => {
   if (!link) return '';
 
   try {
-    const url = new URL(link, typeof window !== 'undefined' ? window.location.origin : process.env.SERVER_URL);
+    const url = new URL(link, typeof window !== 'undefined' ? window.location.origin : SERVER_URL);
     const segments = url.pathname.split('/').filter(Boolean);
 
     const routeKeys = ['interview', 'candidate-interview', 'interview-room'];
