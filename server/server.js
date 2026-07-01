@@ -8,7 +8,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+const clientUrl = process.env.CLIENT_URL || process.env.Client_URL;
+
+app.use(
+  cors({
+    origin: clientUrl || true,
+  })
+);
 app.use(express.json());
 
 // Routes
