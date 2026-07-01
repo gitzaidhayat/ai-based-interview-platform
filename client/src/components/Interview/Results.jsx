@@ -21,11 +21,11 @@ const Results = () => {
       setLoading(true);
       
       // Fetch interview details
-      const interviewRes = await axios.get(`http://localhost:5000/api/interview/${id}`);
+      const interviewRes = await axios.get(`${process.env.SERVER_URL}/api/interview/${id}`);
       setInterview(interviewRes.data);
 
       // Fetch responses
-      const responsesRes = await axios.get(`http://localhost:5000/api/interview/${id}/responses`);
+      const responsesRes = await axios.get(`${process.env.SERVER_URL}/api/interview/${id}/responses`);
       setResponses(responsesRes.data);
 
       setLoading(false);

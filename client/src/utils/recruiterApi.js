@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { buildRecruiterShareLink } from './recruiterInterviewLinks.js';
 
-const RECRUITER_API_BASE = 'http://localhost:5000/api/recruiter';
+const RECRUITER_API_BASE = `${process.env.SERVER_URL}/api/recruiter`;
 
 export const getRecruiterAuthConfig = () => {
   const token = localStorage.getItem('token');

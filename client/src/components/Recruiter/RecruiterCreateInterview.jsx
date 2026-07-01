@@ -49,7 +49,7 @@ const RecruiterCreateInterview = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5000/api/recruiter/create-interview',
+        `${process.env.SERVER_URL}/api/recruiter/create-interview`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -53,7 +53,7 @@ const RecruiterDashboard = () => {
   const fetchInterviews = async () => {
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.get('http://localhost:5000/api/recruiter/interviews', {
+      const { data } = await axios.get('https://ai-based-interview-platform.onrender.com/api/recruiter/interviews', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const interviewList = Array.isArray(data) ? data : [];
@@ -106,7 +106,7 @@ const RecruiterDashboard = () => {
     if (!window.confirm('Delete this interview and all candidate results?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/recruiter/delete-interview/${id}`, {
+      await axios.delete(`${process.env.SERVER_URL}/api/recruiter/delete-interview/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchInterviews();

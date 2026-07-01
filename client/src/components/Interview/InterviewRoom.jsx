@@ -29,7 +29,7 @@ const InterviewRoom = () => {
 
   const loadInterview = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/interview/${id}`);
+      const res = await axios.get(`${process.env.SERVER_URL}/api/interview/${id}`);
       setInterview(res.data);
       setQuestionStartTime(Date.now());
       setLoading(false);
@@ -61,7 +61,7 @@ const InterviewRoom = () => {
 
       const currentQuestion = interview.questions[currentQuestionIndex];
 
-      await axios.post(`http://localhost:5000/api/interview/${id}/response`, {
+      await axios.post(`${process.env.SERVER_URL}/api/interview/${id}/response`, {
         questionId: currentQuestion.question._id,
         transcript,
         thinkingTime,
@@ -76,7 +76,7 @@ const InterviewRoom = () => {
         setAnswerStartTime(null);
       } else {
         // Complete interview
-        await axios.post(`http://localhost:5000/api/interview/${id}/complete`);
+        await axios.post(`${process.env.SERVER_URL}/api/interview/${id}/complete`);
         navigate(`/results/${id}`);
       }
     } catch (err) {

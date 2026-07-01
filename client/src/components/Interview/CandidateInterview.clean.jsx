@@ -81,15 +81,14 @@ const CandidateInterview = () => {
       // Try student interview API first (for practice interviews)
       let response;
       try {
-        response = await axios.get(
-          `http://localhost:5000/api/interview/${id}`,
+        response = await axios.get(`${process.env.SERVER_URL}/api/interview/${id}`,
           getAuthHeaders()
         );
       } catch (studentError) {
         // If student interview not found, try recruiter interview API
         try {
           response = await axios.get(
-            `http://localhost:5000/api/recruiter/interview/${id}`,
+            `${process.env.SERVER_URL}/api/recruiter/interview/${id}`,
             getAuthHeaders()
           );
         } catch (recruiterError) {

@@ -85,12 +85,12 @@ const CandidateInterview = () => {
       
       const requestOrder = !isLoggedIn || user?.role === 'recruiter'
         ? [
-            () => axios.get(`http://localhost:5000/api/recruiter/interview/${id}`, getAuthHeaders()),
-            () => axios.get(`http://localhost:5000/api/interview/${id}`, getAuthHeaders()),
+            () => axios.get(`${process.env.SERVER_URL}/api/recruiter/interview/${id}`, getAuthHeaders()),
+            () => axios.get(`${process.env.SERVER_URL}/api/interview/${id}`, getAuthHeaders()),
           ]
         : [
-            () => axios.get(`http://localhost:5000/api/interview/${id}`, getAuthHeaders()),
-            () => axios.get(`http://localhost:5000/api/recruiter/interview/${id}`, getAuthHeaders()),
+            () => axios.get(`${process.env.SERVER_URL}/api/interview/${id}`, getAuthHeaders()),
+            () => axios.get(`${process.env.SERVER_URL}/api/recruiter/interview/${id}`, getAuthHeaders()),
           ];
 
       let response = null;
@@ -155,7 +155,7 @@ const CandidateInterview = () => {
       if (isLoggedIn && id) {
         try {
           const submitRes = await axios.post(
-            `http://localhost:5000/api/interview/${id}/response`,
+            `${process.env.SERVER_URL}/api/interview/${id}/response`,
             {
               transcript,
               thinkingTime,
@@ -400,12 +400,12 @@ const CandidateInterview = () => {
 
       const submissionOrder = !isLoggedIn || user?.role === 'recruiter'
         ? [
-            () => axios.post('http://localhost:5000/api/recruiter/submit-result', resultData, getAuthHeaders()),
-            () => axios.post(`http://localhost:5000/api/interview/${id}/submit`, resultData, getAuthHeaders()),
+            () => axios.post(`${process.env.SERVER_URL}/api/recruiter/submit-result`, resultData, getAuthHeaders()),
+            () => axios.post(`${process.env.SERVER_URL}/api/interview/${id}/submit`, resultData, getAuthHeaders()),
           ]
         : [
-            () => axios.post(`http://localhost:5000/api/interview/${id}/submit`, resultData, getAuthHeaders()),
-            () => axios.post('http://localhost:5000/api/recruiter/submit-result', resultData, getAuthHeaders()),
+            () => axios.post(`${process.env.SERVER_URL}/api/interview/${id}/submit`, resultData, getAuthHeaders()),
+            () => axios.post(`${process.env.SERVER_URL}/api/recruiter/submit-result`, resultData, getAuthHeaders()),
           ];
 
       let submitted = false;
